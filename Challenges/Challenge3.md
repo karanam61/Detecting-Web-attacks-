@@ -1,6 +1,21 @@
 Challenge – HTTP :
 
-The challenge is analyzing a pcap
+The challenge is analyzing a PCAP file. First step is to load it in a tool like Wireshark and get a quick overview — what protocols are present, how many packets, and the capture timeline.  
+This sets the baseline for what’s normal and what’s not.
+Check out the source and destination IPs and the ports being used. Common web traffic over 80 or 443 isn’t always safe, so filtering in the SIEM helps confirm if those same IPs show up in historical logs.  
+This ties into **NIST Incident Response (IR-4: Incident Handling)** — identify potential malicious communications early.
+Look for clear red flags:
+- HTTP requests with encoded payloads (could point to LFI or SQLi).  
+- Attempts to access sensitive paths like `/etc/passwd`.  
+- Unusual DNS queries that could signal tunneling.  
+
+These map to **MITRE ATT&CK T1190 (Exploit Public-Facing Application)** and **T1046 (Network Service Scanning)**, depending on the activity.
+
+Once suspicious traffic is spotted, validate it:
+- Cross-check in SIEM for matching logs.  
+- Correlate timestamps with endpoint data (EDR) to see if anything executed.  
+- Confirm if this is a true positive or just noise.  
+
 
 <img src="./media4/media/image1.png"
 style="width:6.5in;height:3.84931in"
@@ -38,16 +53,12 @@ alt="A screen shot of a computer AI-generated content may be incorrect." />
 style="width:6.5in;height:3.26389in"
 alt="A screenshot of a computer AI-generated content may be incorrect." />
 
-d2ViYWRtaW46VzNiNERtMW4=
-
-That string is just Base64. Decoded, it reads:
+The string `d2ViYWRtaW46VzNiNERtMW4=` is just **Base64**. Decoding it gives
 
 webadmin:W3b4Dm1n
 
-So it looks like a username/password combo. If you pulled this from
-somewhere, you might want to treat it as sensitive — because humans love
-the brilliant idea of hiding credentials in Base64 as if attackers don’t
-know how to run base64 -d.
+
+That’s a username/password combo. If this shows up in logs or traffic, treat it as sensitive. Base64 isn’t encryption — it’s just an encoding. Attackers know how to run `base64 -d` in a second, so hiding creds like this is pointless.
 
 <img src="./media4/media/image10.png"
 style="width:6.5in;height:2.58403in"
