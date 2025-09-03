@@ -1,7 +1,6 @@
-Web Alert 3 :
+Alert 2 :
 
 <img src="./media1/media/image1.png"
-style="width:6.5in;height:3.10069in"
 alt="A screenshot of a computer AI-generated content may be incorrect." />
 
 This is the scenario here
@@ -9,7 +8,6 @@ This is the scenario here
 As usual we will examine the IP on virus total –
 
 <img src="./media1/media/image2.png"
-style="width:6.5in;height:2.82917in"
 alt="A screenshot of a computer AI-generated content may be incorrect." />
 
 Nothing on virus total but this isn’t enough for deducing nothing’s
@@ -18,47 +16,43 @@ malicious .
 Gathering client details :
 
 <img src="./media1/media/image3.png"
-style="width:6.5in;height:3.73681in"
 alt="A screenshot of a computer AI-generated content may be incorrect." />
 
-Let us check the logs now .
+The first step is to review the logs associated with the alert. Log inspection helps confirm whether suspicious activity is present and provides context around the event.
+
+- Review web server or application logs for unusual parameters and request patterns.  
+- Note any anomalies in the timestamps, HTTP methods, or response codes.  
+- Pay attention to query parameters such as `id` or `user`, which are often targeted for exploitation.
+
+If suspicious behavior is observed, pivot into your SIEM to filter and correlate these logs for further investigation.
 
 <img src="./media1/media/image4.png"
-style="width:6.5in;height:2.63958in"
 alt="A screenshot of a computer AI-generated content may be incorrect." />
 
 <img src="./media1/media/image5.png"
-style="width:6.5in;height:2.66736in"
 alt="A screenshot of a computer AI-generated content may be incorrect." />
 
-Attacker initially established trust with the victim by sending some
-legitimate requests without any malice you can see the request urls
-being completely normal until the alert Url
+The attacker first built trust by sending normal, harmless requests. You can see in the logs that the request URLs look completely legitimate at the beginning. This continues until the alert URL shows up — that’s where the malicious activity starts.
+
 .<img src="./media1/media/image6.png"
-style="width:6.5in;height:2.95486in"
 alt="A screenshot of a computer AI-generated content may be incorrect." />
 
-The request url ?s is kinda suspicious as it looks like ls . But I don’t
-think it is with malicious intent as it may be triggered with skil-‘ls’
-. Let us check the process
+The request URL with `?s` looks a bit suspicious because it resembles the `ls` command. At first glance it could raise a red flag, but it doesn’t seem to carry malicious intent here. It may have been triggered by something like `skil-'ls'`.  
+
+Let’s move forward and check the process to confirm if anything actually executed.
 
 <img src="./media1/media/image7.png"
-style="width:6.5in;height:3.29306in"
 alt="A screenshot of a computer AI-generated content may be incorrect." />
 
-EDR confirming multiple requests .
+he EDR logs confirm that there were multiple requests made from the attacker. This verifies that the activity was not just a single anomaly but a repeated attempt, which increases the confidence that the behavior is suspicious.
 
 <img src="./media1/media/image8.png"
-style="width:6.5in;height:2.99792in"
 alt="A screenshot of a computer AI-generated content may be incorrect." />
 
-The terminal history doesn’t show any ls command being executed so I
-don’t think anything is suspicious here . But I deduced the ?s to be
-malicious so I lost points there .
+The terminal history does not show any `ls` command being executed, so nothing suspicious was found at this stage. My earlier assumption that the `?s` parameter was malicious turned out to be incorrect, and I lost points there.
 
-The lesson from this is don’t have threat finding mindset but rather
-look everything as normal alert then escalate .
+### Lesson Learned
+Don’t approach every case with a threat-finding mindset. Instead, treat it as a normal alert first, then escalate only when there is enough evidence to support malicious activity.
 
 <img src="./media1/media/image9.png"
-style="width:6.5in;height:2.67569in"
 alt="A screenshot of a computer AI-generated content may be incorrect." />
