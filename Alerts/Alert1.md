@@ -1,36 +1,35 @@
 Web attack Alert 2 :
 
-<img src="./media/media/image1.png" style="width:6.5in;height:2.99444in"
+<img src="./media/media/image1.png" 
 alt="A screenshot of a computer AI-generated content may be incorrect." />
 
 First let us examine the Ip address :
 
-<img src="./media/media/image2.png" style="width:6.5in;height:2.62014in"
+<img src="./media/media/image2.png"
 alt="A blue rectangular object with lines AI-generated content may be incorrect." />
 
-This isn’t flagged as malicious by virus total only 1/94 vendors flagged
-it . So the reputation isn’t bad but digital ocean is personally known
-by me to host dark web servers .
+The suspicious IP address was checked against VirusTotal. Only **1/94 vendors flagged it**, which does not strongly indicate malicious activity. However, additional context is important — this IP is hosted on **DigitalOcean**, a provider often abused to run anonymized services and dark web infrastructure.
 
-But this doesn’t prove anything so we do log analysis .
+MITRE Reference
 
-<img src="./media/media/image3.png" style="width:6.5in;height:3.56875in"
+TA0011: Command and Control (C2) → Adversaries frequently use VPS/cloud providers like DigitalOcean to host C2 infrastructure.
+
+But this doesn’t prove anything so we'll carry out log analysis.
+
+<img src="./media/media/image3.png"
 alt="A screenshot of a computer AI-generated content may be incorrect." />
 
-<img src="./media/media/image4.png" style="width:6.5in;height:2.72639in"
+<img src="./media/media/image4.png"
 alt="A screenshot of a computer AI-generated content may be incorrect." />
 
-<img src="./media/media/image5.png" style="width:6.5in;height:2.91389in"
+<img src="./media/media/image5.png"
 alt="A screenshot of a computer AI-generated content may be incorrect." />
 
-Clearly sees the ID PARAMETER BEING EXPLOITED AND HTTP STATUS CODE BEING
-200 . IT IS A STRAIGHT UP A RED FLAG .
+The logs clearly show the **`id` parameter being exploited**, while the HTTP response code is **200**, indicating the request was successful. This is a direct red flag that the attack executed without triggering an error response.
 
-We need to immediately go to the EDR and check for malicious commands if
-there are any . No escalation but the attack has been carried out so the
-device should be contained .
+We need to immediately pivot to the **Endpoint Detection and Response (EDR)** platform to check for any malicious commands that may have executed on the host. Since the attack has been carried out, the affected device should be **contained** without delay. No escalation is required if the incident is isolated, but containment and deeper EDR analysis are mandatory.
 
-<img src="./media/media/image6.png" style="width:6.5in;height:3.10486in"
+<img src="./media/media/image6.png"
 alt="A screenshot of a computer AI-generated content may be incorrect." />
 
 <img src="./media/media/image7.png" style="width:6.5in;height:2.57847in"
