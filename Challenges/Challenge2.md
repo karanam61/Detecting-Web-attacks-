@@ -1,6 +1,6 @@
 Web attacks – Challenge 2 :
 
-In this challenge I was given an access log to analyze . The first
+In this challenge I was given an access log to analyze .
 question was
 
 <img src="./media3/media/image1.png"
