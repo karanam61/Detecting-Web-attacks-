@@ -7,6 +7,11 @@ This repo has three folders:
 - **Alerts/** → real alerts I worked through
 - **Challenges/** → lab scenarios and write-ups
 
+## 📓 Notes
+- [Static Malware Analysis](Notes/Static%20Malware%20Analysis.md)
+- [Dynamic Malware Analysis](Notes/Dynamic%20Malware%20Analysis.md)
+
 What I use in these notes:
 - **SIEM flow:** Monitoring, Log Management, Web Security (WAF/CDN/CSP), Endpoint Security (only if something runs)
 - **Framework tags:** **MITRE ATT&CK** technique IDs where it makes sense, and **NIST CSF** phases (Detect → Respond → Recover)
+
